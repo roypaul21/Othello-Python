@@ -30,7 +30,7 @@ class Gui:
         # messages
         self.BLACK_LAB_POS = (5, self.SCREEN_SIZE[1] / 4)
         self.WHITE_LAB_POS = (560, self.SCREEN_SIZE[1] / 4)
-        self.font = pygame.font.SysFont("Times New Roman", 22)
+        self.font = pygame.font.SysFont("Times New Roman", 50)
         self.scoreFont = pygame.font.SysFont("Serif", 58)
         self.user = pygame.font.SysFont("Serif", 30)
 
@@ -54,10 +54,9 @@ class Gui:
         self.player1 = User
         self.player2 = COMPUTER
 
-        pygame_menu.widgets.Image(self.BACKGROUND, angle=0, image_id='', onselect=None, scale=(1, 1), scale_smooth=True)
-
         self.menu = pygame_menu.Menu('Othello', 640, 480,
                                      theme=pygame_menu.themes.THEME_DEFAULT)
+                                     
         self.menu.add.button('Play', lambda: start_cb(self.player1, self.player2, self.level))
 
         #self.menu.add.selector('Difficulty: ', [['Medium', 2], ['Easy', 1], ('Hard', 3)], onchange=self.set_difficulty)        
