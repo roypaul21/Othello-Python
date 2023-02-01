@@ -1,8 +1,8 @@
 import pygame
-import ui
+import interface
 import player
 import OthelloBoard
-from settings import BLACK, WHITE, HUMAN
+from settings import BLACK, WHITE, User
 import log
 
 logger = log.setup_custom_logger('root')
@@ -11,19 +11,19 @@ logger = log.setup_custom_logger('root')
 class OthelloGame:
 
     def __init__(self):
-        self.gui = ui.Gui()
+        self.gui = interface.Gui()
         self.board = OthelloBoard.Board()
         self.gui.show_menu(self.start)
 
     def start(self, *args):
         player1, player2, level = args
         logger.info('Settings: player 1: %s, player 2: %s, level: %s ', player1, player2, level)
-        if player1 == HUMAN:
-            self.now_playing = player.Human(self.gui, BLACK)
+        if player1 == User:
+            self.now_playing = player.User(self.gui, BLACK)
         else:
             self.now_playing = player.Computer(BLACK, level + 3)
-        if player2 == HUMAN:
-            self.other_player = player.Human(self.gui, WHITE)
+        if player2 == User:
+            self.other_player = player.User(self.gui, WHITE)
         else:
             self.other_player = player.Computer(WHITE, level + 3)
 
