@@ -6,9 +6,18 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+**/pycache
 # C extensions
 *.so
+
+*.pyc
+bin/
+include/
+lib/
+lib64/
+share/
+*.bak
+.venv
 
 # Distribution / packaging
 .Python

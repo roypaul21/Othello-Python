@@ -1,9 +1,6 @@
 import pygame
-import interface
-import player
-import OthelloBoard
-from settings import BLACK, WHITE, User
-import log
+from Othello import player, interface, OthelloBoard, log
+from Othello.settings import BLACK, WHITE, User
 
 logger = log.setup_custom_logger('root')
 
