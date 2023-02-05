@@ -43,23 +43,18 @@ class Gui:
         self.clear_img = pygame.image.load(os.path.join("Othello/Assets", "empty.bmp")).convert()
                                                         
 
-    def show_menu(self, start_cb):
+    def show_menu(self, start):
 
         self.level = DEFAULT_LEVEL
         self.player1 = User
         self.player2 = COMPUTER
 
-        #pygame_menu.widgets.Image(self.BACKGROUND, angle=0, image_id='', onselect=None, scale=(1, 1), scale_smooth=True)
-
+        font = pygame_menu.font.FONT_DIGITAL
+        
         self.menu = pygame_menu.Menu('Othello', 640, 480,
-                                     theme=pygame_menu.themes.THEME_DEFAULT)
-        self.menu.add.button('Play', lambda: start_cb(self.player1, self.player2, self.level))
+                                     theme=pygame_menu.themes.THEME_DARK)
 
-        #self.menu.add.selector('Difficulty: ', [['Medium', 2], ['Easy', 1], ('Hard', 3)], onchange=self.set_difficulty)        
-
-        #self.menu.add.selector('First player', [[User, 1] ,[COMPUTER, 2]],onchange=self.set_player_1)          
-
-        #self.menu.add.selector('Second player', [[COMPUTER, 2], [User, 1]], onchange=self.set_player_2)       
+        self.menu.add.button('Start Game', lambda: start(self.player1, self.player2, self.level))
 
         self.menu.mainloop(self.screen)
 
@@ -73,19 +68,19 @@ class Gui:
 
     def reset_menu(self):
         self.menu.disable()
-        self.menu.reset(1)
-
-    def set_difficulty(self, value, difficulty):
-        self.level = difficulty
+        self.menu.reset(2)
 
     def show_winner(self, player_color):
-        self.screen.fill(pygame.Color(0, 0, 0, 50))
-        font = pygame.font.SysFont("Courier New", 34)
+        font = pygame.font.SysFont("Courier New", 34, bold = pygame.font.Font.bold)
         if player_color == WHITE:
-            msg = font.render("White player wins", True, self.WHITE)
+            self.screen.fill(pygame.Color(255, 255, 255, 50))
+            msg = font.render("White player wins", True, self.BLACK)
+            
         elif player_color == BLACK:
+            self.screen.fill(pygame.Color(0, 0, 0, 50))
             msg = font.render("Black player wins", True, self.WHITE)
         else:
+            self.screen.fill(pygame.Color(0, 0, 0, 50))
             msg = font.render("Tie !", True, self.WHITE)
         self.screen.blit(
             msg, msg.get_rect(
